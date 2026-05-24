@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAO Governance Radar — Decentralized Decision Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',sans-serif;background:#1a0f00;color:#fef3c7;min-height:100vh}
+.warm{background-image:radial-gradient(at 20% 80%,rgba(245,158,11,0.12) 0,transparent 50%),radial-gradient(at 80% 20%,rgba(249,115,22,0.08) 0,transparent 50%)}
+.card{background:rgba(255,255,255,0.04);border:1px solid rgba(245,158,11,0.15);border-radius:16px;transition:all .3s}
+.card:hover{border-color:rgba(245,158,11,0.4);box-shadow:0 0 30px rgba(245,158,11,0.08)}
+.vote-bar{height:8px;border-radius:4px;background:rgba(255,255,255,0.08);overflow:hidden}
+.chart-box{position:relative;height:180px}
+</style>
+</head>
+<body class="warm">
+<div class="max-w-7xl mx-auto px-6 py-8">
+  <div class="flex items-center gap-4 mb-8">
+    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+    </div>
+    <div><h1 class="text-2xl font-bold">DAO Governance Radar</h1><p class="text-xs text-amber-400 tracking-wider">DECISION INTELLIGENCE PLATFORM</p></div>
+  </div>
+  <div class="grid grid-cols-4 gap-4 mb-6">
+    <div class="card p-5"><p class="text-xs text-amber-700 mb-1">Active Proposals</p><p class="text-3xl font-bold">127</p><p class="text-xs text-amber-500 mt-2">across 34 DAOs</p></div>
+    <div class="card p-5"><p class="text-xs text-amber-700 mb-1">Participation Rate</p><p class="text-3xl font-bold">68<span class="text-lg">%</span></p><p class="text-xs text-emerald-500 mt-2">↑ 12% from last month</p></div>
+    <div class="card p-5"><p class="text-xs text-amber-700 mb-1">Treasury Monitored</p><p class="text-3xl font-bold">$4.2B</p><p class="text-xs text-amber-500 mt-2">across all DAOs</p></div>
+    <div class="card p-5"><p class="text-xs text-amber-700 mb-1">Proposal Pass Rate</p><p class="text-3xl font-bold">73<span class="text-lg">%</span></p><p class="text-xs text-amber-500 mt-2">last 90 days</p></div>
+  </div>
+  <div class="grid grid-cols-2 gap-4 mb-6">
+    <div class="card p-6">
+      <h3 class="text-sm font-semibold text-amber-300 mb-4">Active: Uniswap #47 — Fee Structure Reform</h3>
+      <div class="space-y-4">
+        <div>
+          <div class="flex justify-between text-xs mb-2"><span class="text-emerald-400">For: 67.3M UNI</span><span class="text-red-400">Against: 12.1M UNI</span></div>
+          <div class="vote-bar"><div class="h-full rounded-full bg-gradient-to-r from-emerald-500 to-emerald-400" style="width:84.7%"></div></div>
+        </div>
+        <div class="text-xs text-gray-400 space-y-1">
+          <p>Quorum: 40M UNI ✓ Reached</p>
+          <p>Ends: 2 days, 14 hours</p>
+          <p>Delegate votes: 234 unique voters</p>
+        </div>
+        <div class="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
+          <p class="text-xs font-semibold text-amber-300 mb-1">AI Prediction</p>
+          <p class="text-xs text-gray-400">94% probability of passing based on current voting trajectory, delegate sentiment analysis, and historical patterns.</p>
+        </div>
+      </div>
+    </div>
+    <div class="card p-6">
+      <h3 class="text-sm font-semibold text-amber-300 mb-4">Governance Activity by DAO</h3>
+      <div class="chart-box"><canvas id="govChart"></canvas></div>
+    </div>
+  </div>
+  <div class="card p-6">
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center"><svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0"/></svg></div>
+      <div><h3 class="text-sm font-semibold text-white">Agent Governance Brief</h3><p class="text-xs text-gray-500">MiMo-powered proposal analysis</p></div>
+    </div>
+    <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20">
+      <p class="text-sm font-medium mb-1">Proposal Impact Assessment: Uniswap #47</p>
+      <p class="text-xs text-gray-400">Fee structure reform would redirect 0.05% of swap volume to treasury, generating ~$180M annually. Analysis of 12 similar proposals across DeFi shows average TVL impact of +3.2% within 90 days of implementation. Key risk: potential migration to competing DEXs if fee increase exceeds market tolerance.</p>
+    </div>
+  </div>
+</div>
+<script>
+new Chart(document.getElementById('govChart').getContext('2d'),{
+  type:'bar',data:{labels:['Uniswap','Aave','Maker','Compound','Lido','Arbitrum','Optimism'],datasets:[{label:'Proposals',data:[24,18,31,15,12,8,19],backgroundColor:'#f59e0b',borderRadius:6,barPercentage:0.6}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{color:'#92400e',font:{size:11}}},y:{grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#92400e'}}}}
+});
+</script>
+</body>
+</html>
