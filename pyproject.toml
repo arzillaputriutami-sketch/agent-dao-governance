@@ -1,0 +1,9 @@
+[project]
+name = "agent-dao-governance"
+version = "1.0.0"
+description = "Decision intelligence layer for proposals, delegate blocs, vote risk, and execution monitoring."
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

@@ -1,75 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DAO Governance Radar — Decentralized Decision Intelligence</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAO Governance Radar — Snapshot Proposal Intelligence</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Outfit',sans-serif;background:#1a0f00;color:#fef3c7;min-height:100vh}
-.warm{background-image:radial-gradient(at 20% 80%,rgba(245,158,11,0.12) 0,transparent 50%),radial-gradient(at 80% 20%,rgba(249,115,22,0.08) 0,transparent 50%)}
-.card{background:rgba(255,255,255,0.04);border:1px solid rgba(245,158,11,0.15);border-radius:16px;transition:all .3s}
-.card:hover{border-color:rgba(245,158,11,0.4);box-shadow:0 0 30px rgba(245,158,11,0.08)}
-.vote-bar{height:8px;border-radius:4px;background:rgba(255,255,255,0.08);overflow:hidden}
-.chart-box{position:relative;height:180px}
+  :root{--bg:#0a0e17;--panel:#0f1923;--border:#1e293b;--indigo:#6366f1;--green:#10b981;--red:#ef4444;--yellow:#eab308;--cyan:#22f7ff;--text:#e2e8f0;--muted:#94a3b8}
+  *{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh}
+  .mono{font-family:'JetBrains Mono',monospace}.panel{background:var(--panel);border:1px solid var(--border);border-radius:12px}
+  .btn{padding:8px 16px;border-radius:8px;font-weight:600;cursor:pointer;border:none;transition:.2s;font-size:14px}
+  .btn-primary{background:var(--indigo);color:#fff}.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}.btn-ghost:hover{border-color:var(--indigo)}
+  input{background:#0f172a;border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:8px;outline:none;width:100%;font-size:14px}
+  input:focus{border-color:var(--indigo)}
+  .badge{padding:3px 10px;border-radius:99px;font-size:11px;font-weight:600}
+  ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
+  .fade-in{animation:fadeIn .3s}@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .proposal-card{background:#0f172a;border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:8px;transition:.2s;cursor:pointer}
+  .proposal-card:hover{border-color:var(--indigo)}
+  .vote-bar{height:8px;border-radius:4px;overflow:hidden;display:flex;background:#1e293b}
 </style>
 </head>
-<body class="warm">
-<div class="max-w-7xl mx-auto px-6 py-8">
-  <div class="flex items-center gap-4 mb-8">
-    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center">
-      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+<body>
+<div class="max-w-5xl mx-auto p-4 lg:p-6">
+  <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center text-lg" style="background:var(--indigo);color:#fff">🏛</div>
+      <div><h1 class="text-xl font-bold">DAO Governance Radar</h1><p class="text-xs" style="color:var(--muted)">Real proposal data from Snapshot — search any DAO and analyze votes</p></div>
     </div>
-    <div><h1 class="text-2xl font-bold">DAO Governance Radar</h1><p class="text-xs text-amber-400 tracking-wider">DECISION INTELLIGENCE PLATFORM</p></div>
   </div>
-  <div class="grid grid-cols-4 gap-4 mb-6">
-    <div class="card p-5"><p class="text-xs text-amber-700 mb-1">Active Proposals</p><p class="text-3xl font-bold">127</p><p class="text-xs text-amber-500 mt-2">across 34 DAOs</p></div>
-    <div class="card p-5"><p class="text-xs text-amber-700 mb-1">Participation Rate</p><p class="text-3xl font-bold">68<span class="text-lg">%</span></p><p class="text-xs text-emerald-500 mt-2">↑ 12% from last month</p></div>
-    <div class="card p-5"><p class="text-xs text-amber-700 mb-1">Treasury Monitored</p><p class="text-3xl font-bold">$4.2B</p><p class="text-xs text-amber-500 mt-2">across all DAOs</p></div>
-    <div class="card p-5"><p class="text-xs text-amber-700 mb-1">Proposal Pass Rate</p><p class="text-3xl font-bold">73<span class="text-lg">%</span></p><p class="text-xs text-amber-500 mt-2">last 90 days</p></div>
+
+  <div class="panel p-4 mb-6">
+    <div class="flex gap-3">
+      <input id="daoInput" placeholder="Snapshot space (e.g. ens.eth, aave.eth, uniswap, gitcoindao.eth)">
+      <button onclick="loadDAO()" class="btn btn-primary">🏛 Load Proposals</button>
+    </div>
+    <div class="flex flex-wrap gap-2 mt-3">
+      <button onclick="load('ens.eth')" class="btn btn-ghost text-xs">ENS</button>
+      <button onclick="load('aave.eth')" class="btn btn-ghost text-xs">Aave</button>
+      <button onclick="load('uniswap')" class="btn btn-ghost text-xs">Uniswap</button>
+      <button onclick="load('gitcoindao.eth')" class="btn btn-ghost text-xs">Gitcoin</button>
+      <button onclick="load('opcollective.eth')" class="btn btn-ghost text-xs">Optimism</button>
+    </div>
   </div>
-  <div class="grid grid-cols-2 gap-4 mb-6">
-    <div class="card p-6">
-      <h3 class="text-sm font-semibold text-amber-300 mb-4">Active: Uniswap #47 — Fee Structure Reform</h3>
-      <div class="space-y-4">
-        <div>
-          <div class="flex justify-between text-xs mb-2"><span class="text-emerald-400">For: 67.3M UNI</span><span class="text-red-400">Against: 12.1M UNI</span></div>
-          <div class="vote-bar"><div class="h-full rounded-full bg-gradient-to-r from-emerald-500 to-emerald-400" style="width:84.7%"></div></div>
-        </div>
-        <div class="text-xs text-gray-400 space-y-1">
-          <p>Quorum: 40M UNI ✓ Reached</p>
-          <p>Ends: 2 days, 14 hours</p>
-          <p>Delegate votes: 234 unique voters</p>
-        </div>
-        <div class="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
-          <p class="text-xs font-semibold text-amber-300 mb-1">AI Prediction</p>
-          <p class="text-xs text-gray-400">94% probability of passing based on current voting trajectory, delegate sentiment analysis, and historical patterns.</p>
-        </div>
+
+  <div id="loading" class="hidden text-center py-12"><div class="inline-block w-8 h-8 border-3 rounded-full animate-spin" style="border:3px solid var(--border);border-top-color:var(--indigo)"></div><p class="mt-3 text-sm" style="color:var(--muted)">Fetching proposals from Snapshot...</p></div>
+  <div id="error" class="hidden panel p-6 text-center max-w-md mx-auto"><div class="text-4xl mb-3">❌</div><p id="errMsg" class="text-sm" style="color:var(--muted)"></p></div>
+
+  <div id="results" class="hidden fade-in">
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+      <div>
+        <h2 id="daoName" class="text-xl font-bold"></h2>
+        <p id="daoInfo" class="text-xs" style="color:var(--muted)"></p>
       </div>
+      <div id="daoStats" class="flex gap-4"></div>
     </div>
-    <div class="card p-6">
-      <h3 class="text-sm font-semibold text-amber-300 mb-4">Governance Activity by DAO</h3>
-      <div class="chart-box"><canvas id="govChart"></canvas></div>
+
+    <!-- Filters -->
+    <div class="flex gap-2 mb-4">
+      <button onclick="filterBy('all')" class="btn btn-ghost text-xs filter-btn active" data-filter="all">All</button>
+      <button onclick="filterBy('active')" class="btn btn-ghost text-xs filter-btn" data-filter="active">🟢 Active</button>
+      <button onclick="filterBy('closed')" class="btn btn-ghost text-xs filter-btn" data-filter="closed">🔴 Closed</button>
+      <button onclick="filterBy('pending')" class="btn btn-ghost text-xs filter-btn" data-filter="pending">🟡 Pending</button>
     </div>
-  </div>
-  <div class="card p-6">
-    <div class="flex items-center gap-3 mb-4">
-      <div class="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center"><svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0"/></svg></div>
-      <div><h3 class="text-sm font-semibold text-white">Agent Governance Brief</h3><p class="text-xs text-gray-500">MiMo-powered proposal analysis</p></div>
-    </div>
-    <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20">
-      <p class="text-sm font-medium mb-1">Proposal Impact Assessment: Uniswap #47</p>
-      <p class="text-xs text-gray-400">Fee structure reform would redirect 0.05% of swap volume to treasury, generating ~$180M annually. Analysis of 12 similar proposals across DeFi shows average TVL impact of +3.2% within 90 days of implementation. Key risk: potential migration to competing DEXs if fee increase exceeds market tolerance.</p>
-    </div>
+
+    <!-- Proposals List -->
+    <div id="proposals"></div>
   </div>
 </div>
+
 <script>
-new Chart(document.getElementById('govChart').getContext('2d'),{
-  type:'bar',data:{labels:['Uniswap','Aave','Maker','Compound','Lido','Arbitrum','Optimism'],datasets:[{label:'Proposals',data:[24,18,31,15,12,8,19],backgroundColor:'#f59e0b',borderRadius:6,barPercentage:0.6}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{color:'#92400e',font:{size:11}}},y:{grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#92400e'}}}}
-});
+const $ = id => document.getElementById(id);
+let allProposals = [];
+let currentFilter = 'all';
+function load(s) { $('daoInput').value = s; loadDAO(); }
+
+async function loadDAO() {
+  const space = $('daoInput').value.trim().toLowerCase();
+  if (!space) return;
+
+  $('results').classList.add('hidden');
+  $('error').classList.add('hidden');
+  $('loading').classList.remove('hidden');
+
+  try {
+    // Snapshot GraphQL API (free, CORS-friendly)
+    const query = `{
+      space(id: "${space}") {
+        id name about network twitter website
+        membersCount followersCount
+        proposals(first: 50, orderBy: "created", orderDirection: desc) {
+          id title body state start end choices scores scores_total author created link
+          votes
+        }
+      }
+    }`;
+
+    const res = await fetch('https://hub.snapshot.org/graphql', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query })
+    });
+
+    if (!res.ok) throw new Error('Snapshot API error');
+    const data = await res.json();
+    
+    if (data.errors) throw new Error(data.errors[0].message);
+    if (!data.data?.space) throw new Error('Space "' + space + '" not found on Snapshot');
+
+    const sp = data.data.space;
+    allProposals = (sp.proposals || []).map(p => ({
+      ...p,
+      space: sp.name || sp.id,
+      state: p.state || 'unknown'
+    }));
+
+    displayDAO(sp);
+  } catch(e) {
+    $('loading').classList.add('hidden');
+    $('error').classList.remove('hidden');
+    $('errMsg').textContent = e.message;
+  }
+}
+
+function displayDAO(space) {
+  $('loading').classList.add('hidden');
+  $('results').classList.remove('hidden');
+
+  $('daoName').textContent = space.name || space.id;
+  $('daoInfo').textContent = (space.about || '').slice(0, 200);
+  $('daoStats').innerHTML = `
+    <span class="text-xs" style="color:var(--muted)">Members: <strong class="mono">${space.membersCount || '?'}</strong></span>
+    <span class="text-xs" style="color:var(--muted)">Followers: <strong class="mono">${space.followersCount || '?'}</strong></span>
+    <span class="text-xs" style="color:var(--muted)">Proposals: <strong class="mono">${allProposals.length}</strong></span>
+  `;
+
+  renderProposals();
+}
+
+function renderProposals() {
+  const filtered = currentFilter === 'all' ? allProposals : allProposals.filter(p => p.state === currentFilter);
+  
+  if (!filtered.length) {
+    $('proposals').innerHTML = '<div class="panel p-8 text-center"><p style="color:var(--muted)">No proposals found</p></div>';
+    return;
+  }
+
+  $('proposals').innerHTML = filtered.map(p => {
+    const statusColor = p.state === 'active' ? 'var(--green)' : p.state === 'closed' ? 'var(--red)' : 'var(--yellow)';
+    const endDate = p.end ? new Date(p.end * 1000).toLocaleDateString() : '?';
+    const totalVotes = p.scores_total || 0;
+    
+    // Calculate vote distribution
+    const choices = p.choices || [];
+    const scores = p.scores || [];
+    const total = scores.reduce((a, b) => a + b, 0) || 1;
+    
+    return `<div class="proposal-card" onclick="this.querySelector('.proposal-detail').classList.toggle('hidden')">
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex-1">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="badge" style="background:${statusColor}22;color:${statusColor}">${p.state}</span>
+            <span class="text-xs" style="color:var(--muted)">${p.votes || 0} votes</span>
+          </div>
+          <h4 class="font-semibold">${p.title || 'Untitled'}</h4>
+          <p class="text-xs mt-1" style="color:var(--muted)">by ${(p.author||'').slice(0,10)}... • Ends: ${endDate}</p>
+        </div>
+      </div>
+      
+      ${choices.length ? `<div class="mt-3">
+        ${choices.map((c, i) => {
+          const pct = total > 0 ? ((scores[i] || 0) / total * 100) : 0;
+          const isWinning = i === scores.indexOf(Math.max(...scores));
+          return `<div class="flex items-center gap-2 mb-1">
+            <span class="text-xs w-24 truncate" style="color:${isWinning ? 'var(--cyan)' : 'var(--muted)'}">${c}</span>
+            <div class="flex-1"><div class="vote-bar"><div style="width:${pct}%;background:${isWinning ? 'var(--indigo)' : '#334155'};border-radius:4px"></div></div></div>
+            <span class="mono text-xs font-bold" style="color:${isWinning ? 'var(--cyan)' : 'var(--muted)'}">${pct.toFixed(1)}%</span>
+          </div>`;
+        }).join('')}
+      </div>` : ''}
+      
+      <div class="proposal-detail hidden mt-3 pt-3" style="border-top:1px solid var(--border)">
+        <p class="text-xs mb-2" style="color:var(--muted)">Score: ${formatNum(totalVotes)}</p>
+        ${p.link ? '<a href="' + p.link + '" target="_blank" class="text-xs" style="color:var(--indigo)">🔗 View on Snapshot →</a>' : ''}
+        <p class="text-xs mt-2" style="color:var(--muted)">${(p.body || '').replace(/<[^>]+>/g, '').slice(0, 500)}</p>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterBy(state) {
+  currentFilter = state;
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.filter === state);
+    b.style.borderColor = b.dataset.filter === state ? 'var(--indigo)' : 'var(--border)';
+    b.style.color = b.dataset.filter === state ? 'var(--indigo)' : 'var(--text)';
+  });
+  renderProposals();
+}
+
+function formatNum(n) { return n >= 1e6 ? (n/1e6).toFixed(1)+'M' : n >= 1e3 ? (n/1e3).toFixed(1)+'K' : (n||0).toString(); }
+$('daoInput').addEventListener('keydown', e => { if (e.key === 'Enter') loadDAO(); });
 </script>
 </body>
 </html>

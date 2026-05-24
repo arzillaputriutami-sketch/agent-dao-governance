@@ -1,0 +1,10 @@
+{
+  "scenario": "treasury spend vote",
+  "signals": {
+    "quorum_gap_pct": 50,
+    "delegate_concentration": 57,
+    "treasury_impact_usd": 64,
+    "execution_delay_days": 71,
+    "sentiment_shift": 78
+  }
+}
