@@ -3,48 +3,48 @@
   "status": "completed",
   "mode": "deterministic-reviewer-demo",
   "latency_ms": 0,
-  "summary": "5 specialist agents completed; 4 high-priority findings; 32806 estimated tokens.",
+  "summary": "5 specialist agents completed; 4 high-priority findings; 55538 estimated tokens.",
   "token_usage": {
     "project": "DAO Governance Copilot",
     "events": [
       {
-        "timestamp": "2026-05-25T20:14:50.866907+00:00",
+        "timestamp": "2026-05-25T20:21:02.686808+00:00",
         "project": "DAO Governance Copilot",
         "agent": "Liquidity Scout",
-        "estimated_tokens": 9018,
+        "estimated_tokens": 10330,
         "severity": "high"
       },
       {
-        "timestamp": "2026-05-25T20:14:50.866927+00:00",
+        "timestamp": "2026-05-25T20:21:02.686827+00:00",
         "project": "DAO Governance Copilot",
         "agent": "Exploit Sentinel",
-        "estimated_tokens": 4208,
-        "severity": "low"
+        "estimated_tokens": 13129,
+        "severity": "medium"
       },
       {
-        "timestamp": "2026-05-25T20:14:50.866933+00:00",
+        "timestamp": "2026-05-25T20:21:02.686833+00:00",
         "project": "DAO Governance Copilot",
         "agent": "Oracle Auditor",
-        "estimated_tokens": 6455,
-        "severity": "critical"
+        "estimated_tokens": 11246,
+        "severity": "high"
       },
       {
-        "timestamp": "2026-05-25T20:14:50.866938+00:00",
+        "timestamp": "2026-05-25T20:21:02.686837+00:00",
         "project": "DAO Governance Copilot",
         "agent": "Treasury Guardian",
-        "estimated_tokens": 4703,
-        "severity": "critical"
+        "estimated_tokens": 9054,
+        "severity": "high"
       },
       {
-        "timestamp": "2026-05-25T20:14:50.866941+00:00",
+        "timestamp": "2026-05-25T20:21:02.686840+00:00",
         "project": "DAO Governance Copilot",
         "agent": "Incident Reporter",
-        "estimated_tokens": 8422,
-        "severity": "high"
+        "estimated_tokens": 11779,
+        "severity": "critical"
       }
     ],
-    "total_estimated_tokens": 32806,
-    "daily_projection_tokens": 3149376,
+    "total_estimated_tokens": 55538,
+    "daily_projection_tokens": 5331648,
     "agent_count": 5
   },
   "findings": [
@@ -52,71 +52,71 @@
       "agent": "Liquidity Scout",
       "role": "tracks pool depth, volatility spikes, and suspicious flow concentration",
       "severity": "high",
-      "confidence": 0.8,
-      "finding": "Liquidity Scout reviewed DeFi risk monitoring signal: treasury diversification proposal with admin execution payload. Risk pattern=high confidence=0.8.",
+      "confidence": 0.66,
+      "finding": "Liquidity Scout reviewed DeFi risk monitoring signal: treasury diversification proposal with admin payload. Risk pattern=high confidence=0.66.",
       "evidence": [
         "domain=DeFi risk monitoring",
-        "subject_hash=85aca6ff92",
+        "subject_hash=ef0fdf9848",
         "agent_stage=1"
       ],
       "recommendation": "Run liquidity scout follow-up pass, capture artifacts, then prioritize high items first.",
-      "estimated_tokens": 9018
+      "estimated_tokens": 10330
     },
     {
       "agent": "Exploit Sentinel",
       "role": "maps events to known attack primitives and detects anomalous protocol behavior",
-      "severity": "low",
-      "confidence": 0.87,
-      "finding": "Exploit Sentinel reviewed DeFi risk monitoring signal: treasury diversification proposal with admin execution payload. Risk pattern=low confidence=0.87.",
+      "severity": "medium",
+      "confidence": 0.9,
+      "finding": "Exploit Sentinel reviewed DeFi risk monitoring signal: treasury diversification proposal with admin payload. Risk pattern=medium confidence=0.9.",
       "evidence": [
         "domain=DeFi risk monitoring",
-        "subject_hash=85aca6ff92",
+        "subject_hash=ef0fdf9848",
         "agent_stage=2"
       ],
-      "recommendation": "Run exploit sentinel follow-up pass, capture artifacts, then prioritize low items first.",
-      "estimated_tokens": 4208
+      "recommendation": "Run exploit sentinel follow-up pass, capture artifacts, then prioritize medium items first.",
+      "estimated_tokens": 13129
     },
     {
       "agent": "Oracle Auditor",
       "role": "checks oracle drift, stale feeds, and manipulation windows",
-      "severity": "critical",
-      "confidence": 0.82,
-      "finding": "Oracle Auditor reviewed DeFi risk monitoring signal: treasury diversification proposal with admin execution payload. Risk pattern=critical confidence=0.82.",
+      "severity": "high",
+      "confidence": 0.78,
+      "finding": "Oracle Auditor reviewed DeFi risk monitoring signal: treasury diversification proposal with admin payload. Risk pattern=high confidence=0.78.",
       "evidence": [
         "domain=DeFi risk monitoring",
-        "subject_hash=85aca6ff92",
+        "subject_hash=ef0fdf9848",
         "agent_stage=3"
       ],
-      "recommendation": "Run oracle auditor follow-up pass, capture artifacts, then prioritize critical items first.",
-      "estimated_tokens": 6455
+      "recommendation": "Run oracle auditor follow-up pass, capture artifacts, then prioritize high items first.",
+      "estimated_tokens": 11246
     },
     {
       "agent": "Treasury Guardian",
       "role": "scores treasury exposure and proposes emergency controls",
-      "severity": "critical",
-      "confidence": 0.63,
-      "finding": "Treasury Guardian reviewed DeFi risk monitoring signal: treasury diversification proposal with admin execution payload. Risk pattern=critical confidence=0.63.",
+      "severity": "high",
+      "confidence": 0.8,
+      "finding": "Treasury Guardian reviewed DeFi risk monitoring signal: treasury diversification proposal with admin payload. Risk pattern=high confidence=0.8.",
       "evidence": [
         "domain=DeFi risk monitoring",
-        "subject_hash=85aca6ff92",
+        "subject_hash=ef0fdf9848",
         "agent_stage=4"
       ],
-      "recommendation": "Run treasury guardian follow-up pass, capture artifacts, then prioritize critical items first.",
-      "estimated_tokens": 4703
+      "recommendation": "Run treasury guardian follow-up pass, capture artifacts, then prioritize high items first.",
+      "estimated_tokens": 9054
     },
     {
       "agent": "Incident Reporter",
       "role": "synthesizes operator-grade markdown incident reports",
-      "severity": "high",
-      "confidence": 0.75,
-      "finding": "Incident Reporter reviewed DeFi risk monitoring signal: treasury diversification proposal with admin execution payload. Risk pattern=high confidence=0.75.",
+      "severity": "critical",
+      "confidence": 0.83,
+      "finding": "Incident Reporter reviewed DeFi risk monitoring signal: treasury diversification proposal with admin payload. Risk pattern=critical confidence=0.83.",
       "evidence": [
         "domain=DeFi risk monitoring",
-        "subject_hash=85aca6ff92",
+        "subject_hash=ef0fdf9848",
         "agent_stage=5"
       ],
-      "recommendation": "Run incident reporter follow-up pass, capture artifacts, then prioritize high items first.",
-      "estimated_tokens": 8422
+      "recommendation": "Run incident reporter follow-up pass, capture artifacts, then prioritize critical items first.",
+      "estimated_tokens": 11779
     }
   ]
 }
