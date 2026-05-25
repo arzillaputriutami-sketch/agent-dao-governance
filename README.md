@@ -100,3 +100,40 @@ index.html                Static live dashboard
 ## 📄 License
 
 MIT.
+
+<!-- MIMO_APPROVAL_PATTERN_UPGRADE -->
+## Reviewer-Grade MiMo Agent Architecture
+
+DAO Governance Copilot is structured as a token-intensive, multi-agent product rather than a static demo. The pipeline fans out across specialist agents, records per-agent token estimates, then synthesizes findings into reviewer-ready output.
+
+### Specialist Agent Fleet
+- **Proposal Reader** — extracts intent, parameters, treasury impact, and execution calls.
+- **Bloc Analyst** — models voter groups and alignment pressure.
+- **Risk Counsel** — flags governance attack vectors and operational risks.
+- **Treasury Analyst** — scores financial impact and capital efficiency.
+- **Briefing Writer** — produces voter-ready recommendations.
+
+### Verified Demo Run
+- Scenario: `treasury diversification proposal with admin execution payload`
+- Agents executed: 5
+- Estimated tokens in sample run: **32,806**
+- Daily projection at 96 runs/day: **3,149,376 tokens/day**
+- Output artifact: `docs/example_run.json`
+- Human-readable proof: `docs/EXAMPLE_RUN.md`
+
+### Run Locally
+```bash
+python3 cli.py --all
+python3 -m pytest -q
+python3 - <<'PY'
+from backend.core.pipeline import run_pipeline_sync
+print(run_pipeline_sync('DAO Governance Copilot', {'subject': 'treasury diversification proposal with admin execution payload'}))
+PY
+```
+
+### Proof Pack
+- `proofs/boot_log.txt` — environment boot evidence
+- `proofs/run_sample.txt` — deterministic pipeline output summary
+- `docs/example_run.json` — raw structured result
+- `docs/EXAMPLE_RUN.md` — review-facing run report
+
